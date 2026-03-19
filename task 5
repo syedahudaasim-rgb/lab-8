@@ -1,0 +1,48 @@
+#include <stdio.h>
+
+int main() {
+    int a[3][3] = {
+        {1, 0, 0},
+        {0, 1, 0},
+        {0, 0, 1}
+    };
+
+    int i, j;
+    int zero=1, identity=1, diagonal=1, upper=1, lower=1, symmetric=1;
+
+    printf("Matrix:\n");
+    for(i=0;i<3;i++){
+        for(j=0;j<3;j++){
+            printf("%d ", a[i][j]);
+        }
+        printf("\n");
+    }
+
+    printf("\nSquare Matrix\n");
+
+    for(i=0;i<3;i++){
+        for(j=0;j<3;j++){
+            if(a[i][j]!=0) zero=0;
+            if(i!=j && a[i][j]!=0) diagonal=0;
+            if(i>j && a[i][j]!=0) upper=0;
+            if(i<j && a[i][j]!=0) lower=0;
+            if(i==j && a[i][j]!=1) identity=0;
+            if(i!=j && a[i][j]!=0) identity=0;
+        }
+    }
+
+    if(zero) printf("Zero Matrix\n");
+    if(diagonal) printf("Diagonal Matrix\n");
+    if(identity) printf("Identity Matrix\n");
+    if(upper) printf("Upper Triangular Matrix\n");
+    if(lower) printf("Lower Triangular Matrix\n");
+
+    for(i=0;i<3;i++)
+        for(j=0;j<3;j++)
+            if(a[i][j]!=a[j][i])
+                symmetric=0;
+
+    if(symmetric) printf("Symmetric Matrix\n");
+
+    return 0;
+}
